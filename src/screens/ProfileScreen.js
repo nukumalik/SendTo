@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import { View, Text, ScrollView } from 'react-native'
+import { NavigationEvents } from 'react-navigation'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import {
 	Body,
 	Button,
@@ -32,6 +33,8 @@ const ProfileScreen = props => {
 		const data = documentSnapshot.data()
 		setData(data)
 	}
+
+	const refresh = () => {}
 
 	useEffect(() => {
 		getData()
@@ -115,7 +118,7 @@ const style = {
 	thumbnail: {
 		borderRadius: 125,
 		height: 125,
-		margin: 10,
+		marginBottom: 20,
 		width: 125,
 	},
 	listItem: {
