@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "586745470423",
+    "firebase_url": "https://sendto-6b33a.firebaseio.com",
+    "project_id": "sendto-6b33a",
+    "storage_bucket": "sendto-6b33a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586745470423:android:df8469f619902ff2037f92",
+        "android_client_info": {
+          "package_name": "com.sendto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586745470423-s301933koup58qdfskl0uf5djr0135jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sendto",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "586745470423-9g897r59glep42ce8sjk2qklkb6icea1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdwVdnqZbDK2_VCrtjTOCCPcAYZYYGf0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586745470423-9g897r59glep42ce8sjk2qklkb6icea1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
