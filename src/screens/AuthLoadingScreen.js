@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, StatusBar, View } from 'react-native'
+import { ActivityIndicator, StatusBar } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -30,9 +30,9 @@ const AuthLoadingScreen = props => {
 
 const style = {
 	wrapper: {
+		alignItems: 'center',
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
 	},
 }
 

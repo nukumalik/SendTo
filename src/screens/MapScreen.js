@@ -5,7 +5,6 @@ import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
-import MapViewDirections from 'react-native-maps-directions'
 
 const MapScreen = props => {
 	const friendId = props.navigation.getParam('id')
@@ -25,7 +24,9 @@ const MapScreen = props => {
 		const data = documentSnapshot.data()
 		setFriendLatitude(data.latitude)
 		setFriendLongitude(data.longitude)
-		setIsLoading(false)
+		setTimeout(() => {
+			setIsLoading(false)
+		}, 500)
 	}
 
 	const getUserLocation = async () => {
@@ -62,16 +63,21 @@ const MapScreen = props => {
 		})
 	}
 
-	const cordinates = [
-		{
+	const cordinates = []
+
+	if (userLatitude && userLatitude) {
+		cordinates.push({
 			latitude: userLatitude,
 			longitude: userLongitude,
-		},
-		{
+		})
+	}
+
+	if (friendLatitude && friendLongitude) {
+		cordinates.push({
 			latitude: friendLatitude,
 			longitude: friendLongitude,
-		},
-	]
+		})
+	}
 
 	useState(() => {
 		getFriendData()
@@ -125,13 +131,6 @@ const MapScreen = props => {
 							strokeWidth={2}
 							strokeColor="hotpink"
 						/>
-						{/* <MapViewDirections
-							origin={cordinates[0]}
-							destination={cordinates[1]}
-							apikey="AIzaSyABlBVElYH-1b9iVNKHjFj5jrOy6L5Q9qA"
-							strokeWidth={2}
-							strokeColor="hotpink"
-						/> */}
 					</MapView>
 				)}
 			</View>
@@ -139,27 +138,25 @@ const MapScreen = props => {
 	)
 }
 
-const style = StyleSheet.create({
+const style = {
 	wrapper: {
-		flex: 1,
-		// ...StyleSheet.absoluteFillObject,
-		justifyContent: 'center',
 		alignItems: 'center',
+		flex: 1,
+		justifyContent: 'center',
 	},
 	map: {
-		// ...StyleSheet.absoluteFillObject,
-		width: '100%',
 		height: '100%',
+		width: '100%',
 	},
 	header: {
 		backgroundColor: '#35ABFF',
 		elevation: 0,
 	},
 	headerTitle: {
+		color: '#FFF',
 		fontSize: 18,
 		fontWeight: 'bold',
-		color: '#FFF',
 	},
-})
+}
 
 export default MapScreen

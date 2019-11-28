@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { Button, Header, Left, Body, Right, Thumbnail } from 'native-base'
+import { Header, Left, Body, Right, Thumbnail } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { GiftedChat } from 'react-native-gifted-chat'
 import firestore from '@react-native-firebase/firestore'
@@ -14,22 +14,28 @@ const ChatRoomScreen = props => {
 	const [messages, setMessages] = useState([])
 
 	const onSend = useCallback(async text => {
+		text[0].userId = text[0].user._id
 		text[0].user.avatar = userAvatar
-		console.log(text)
 		setMessages(prev => [...text, ...prev])
 		await firestore()
-			.doc('messages/' + userId)
-			.collection(friendId.toString())
+			.collection('messages')
+			.doc(text[0].user._id.toString())
+			.collection(friendId)
 			.add(text[0])
 		await firestore()
-			.doc('messages/' + friendId)
-			.collection(userId)
+			.collection('messages')
+			.doc(friendId)
+			.collection(text[0].user._id.toString())
 			.add(text[0])
 	}, [])
 
+	const getUserId = async () => {
+		const data = await auth().currentUser
+		setUserId(data.uid)
+	}
+
 	const getUserData = async () => {
 		await auth().onAuthStateChanged(user => {
-			setUserId(user.uid)
 			firestore()
 				.collection('users')
 				.doc(user.uid)
@@ -65,6 +71,7 @@ const ChatRoomScreen = props => {
 	}
 
 	useEffect(() => {
+		getUserId()
 		getUserData()
 		getMessages()
 		getFriendData()
@@ -74,7 +81,10 @@ const ChatRoomScreen = props => {
 		<>
 			<Header style={style.header}>
 				<Left>
-					<TouchableOpacity onPress={() => props.navigation.goBack()}>
+					<TouchableOpacity
+						onPress={() =>
+							props.navigation.navigate('BottomTabNavigator')
+						}>
 						<Icon name="arrow-left-thick" size={25} color="#FFF" />
 					</TouchableOpacity>
 				</Left>
@@ -127,13 +137,13 @@ const style = {
 	header: {
 		backgroundColor: '#35ABFF',
 		height: 'auto',
-		paddingTop: 7,
 		paddingBottom: 7,
+		paddingTop: 7,
 	},
 	headerTitle: {
+		color: '#FFF',
 		fontSize: 18,
 		fontWeight: 'bold',
-		color: '#FFF',
 	},
 }
 

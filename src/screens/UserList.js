@@ -58,7 +58,7 @@ const UserList = props => {
 					</Button>
 				</Left>
 				<Body>
-					<Text style={style.headerTitle}>Add Friend</Text>
+					<Text style={style.headerTitle}>SendTo</Text>
 				</Body>
 				<Right>
 					<Button
@@ -88,13 +88,20 @@ const UserList = props => {
 				data={users}
 				renderItem={({ item }) => (
 					<>
-						<TouchableOpacity
-							onPress={() =>
-								props.navigation.navigate('UserProfileScreen', {
-									id: item._data.id,
-								})
-							}>
-							<View style={style.listWrapper}>
+						<View style={style.listWrapper}>
+							<TouchableOpacity
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+								}}
+								onPress={() =>
+									props.navigation.navigate(
+										'UserProfileScreen',
+										{
+											id: item._data.id,
+										},
+									)
+								}>
 								<View style={style.listLeft}>
 									<Thumbnail
 										source={{ uri: item._data.avatar }}
@@ -108,17 +115,26 @@ const UserList = props => {
 										@{item._data.username}
 									</Text>
 								</View>
-								<View style={style.listRight}>
-									<Button transparent>
-										<Icon
-											name="plus"
-											size={25}
-											color="#35ABFF"
-										/>
-									</Button>
-								</View>
+							</TouchableOpacity>
+							<View style={style.listRight}>
+								<Button
+									transparent
+									onPress={() =>
+										props.navigation.navigate(
+											'ChatRoomScreen',
+											{
+												id: item._data.id,
+											},
+										)
+									}>
+									<Icon
+										name="message-text"
+										size={25}
+										color="#35ABFF"
+									/>
+								</Button>
 							</View>
-						</TouchableOpacity>
+						</View>
 					</>
 				)}
 				keyExtractor={(item, index) => index.toString()}
@@ -133,47 +149,44 @@ const style = {
 		elevation: 0,
 	},
 	headerTitle: {
+		color: '#35ABFF',
 		fontSize: 18,
 		fontWeight: 'bold',
-		color: '#35ABFF',
 	},
 	searchWrapper: {
-		// marginHorizontal: 'auto',
-		// backgroundColor: '#eee',
-		// borderRadius: 10,
-		justifyContent: 'center',
 		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	search: {
-		padding: 10,
-		width: '90%',
 		backgroundColor: '#eee',
 		borderRadius: 5,
+		padding: 10,
+		width: '90%',
 	},
 
 	// List
 	listWrapper: {
 		backgroundColor: '#FFF',
-		padding: 5,
-		marginHorizontal: 10,
+		borderBottomColor: '#eee',
+		borderBottomWidth: 1,
 		display: 'flex',
 		flexDirection: 'row',
-		borderBottomWidth: 1,
-		borderBottomColor: '#eee',
+		marginHorizontal: 10,
+		padding: 5,
 	},
 	listLeft: {
 		padding: 10,
 		width: 'auto',
 	},
 	listBody: {
-		padding: 10,
 		justifyContent: 'center',
+		padding: 10,
 	},
 	listRight: {
-		width: 'auto',
-		justifyContent: 'center',
 		alignItems: 'center',
+		justifyContent: 'center',
 		marginLeft: 'auto',
+		width: 'auto',
 	},
 	listTitle: {
 		fontSize: 15,
@@ -181,8 +194,8 @@ const style = {
 		paddingBottom: 5,
 	},
 	listMeta: {
-		fontSize: 12,
 		color: 'gray',
+		fontSize: 12,
 	},
 }
 

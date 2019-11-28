@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import {
+	Body,
 	Button,
-	Thumbnail,
-	List,
-	ListItem,
 	Header,
 	Left,
-	Body,
+	List,
+	ListItem,
 	Right,
+	Thumbnail,
 } from 'native-base'
-import AsyncStorage from '@react-native-community/async-storage'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { withNavigation } from 'react-navigation'
 
 const UserProfileScreen = props => {
 	const [data, setData] = useState({})
 	const userId = props.navigation.getParam('id')
-
-	const logout = async () => {
-		await AsyncStorage.removeItem('Authorization')
-		props.navigation.navigate('AuthLoadingScreen')
-	}
 
 	const getData = async () => {
 		const documentSnapshot = await firestore()
@@ -31,18 +23,12 @@ const UserProfileScreen = props => {
 			.doc(userId)
 			.get()
 		const data = documentSnapshot.data()
-		// console.log(auth().currentUser.uid)
-		// console.log('='.repeat(100))
-		// console.log(data)
 		setData(data)
 	}
 
 	useEffect(() => {
 		getData()
 	}, [])
-
-	console.log('='.repeat(200))
-	console.log(data.avatar)
 
 	return (
 		<>
@@ -117,9 +103,9 @@ const UserProfileScreen = props => {
 const style = {
 	header: {
 		backgroundColor: '#fff',
-		elevation: 0,
-		borderBottomWidth: 1,
 		borderBottomColor: '#35ABFF',
+		borderBottomWidth: 1,
+		elevation: 0,
 	},
 	headerTitle: {
 		color: '#35ABFF',
@@ -127,36 +113,36 @@ const style = {
 		fontWeight: 'bold',
 	},
 	wrapper: {
+		alignItems: 'center',
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
 		paddingVertical: 20,
 	},
 	thumbnail: {
-		width: 125,
-		height: 125,
 		borderRadius: 125,
+		height: 125,
 		margin: 10,
+		width: 125,
 	},
 	listItem: {
-		padding: 20,
 		backgroundColor: '#FFF',
+		padding: 20,
 	},
 	listKey: {
-		width: 'auto',
 		marginRight: 20,
+		width: 'auto',
 	},
 	listValue: {
-		width: 'auto',
 		marginLeft: 'auto',
+		width: 'auto',
 	},
 	button: {
 		backgroundColor: '#111',
-		justifyContent: 'center',
-		width: '50%',
 		borderRadius: 5,
 		elevation: 0,
+		justifyContent: 'center',
 		marginVertical: 20,
+		width: '50%',
 	},
 	buttonText: {
 		color: '#FFF',

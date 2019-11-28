@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
+import React, { useState } from 'react'
 import Geolocation from 'react-native-geolocation-service'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -38,7 +37,6 @@ const App = () => {
 					.doc(user.uid)
 					.set({ latitude, longitude })
 			})
-			// console.log(latitude, longitude)
 		}
 	}, 10000)
 

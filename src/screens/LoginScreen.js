@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import auth from '@react-native-firebase/auth'
-import { View, Text, TextInput } from 'react-native'
+import { Text, TextInput } from 'react-native'
 import { Button } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -82,35 +82,35 @@ function LoginScreen(props) {
 
 const style = {
 	wrapper: {
+		alignItems: 'center',
 		backgroundColor: '#eee',
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
 		paddingVertical: 50,
 	},
 	title: {
-		fontSize: 40,
-		marginBottom: 20,
-		fontWeight: 'bold',
 		color: '#fff',
+		fontSize: 40,
+		fontWeight: 'bold',
+		marginBottom: 20,
 	},
 	input: {
 		backgroundColor: '#FFF',
-		opacity: 0.9,
 		borderColor: '#FFF',
 		borderRadius: 5,
 		borderWidth: 2,
 		marginBottom: 20,
+		opacity: 0.9,
 		padding: 10,
 		width: '80%',
 	},
 	inputError: {
 		backgroundColor: '#FFF',
-		opacity: 0.9,
 		borderColor: '#FF146A',
 		borderRadius: 5,
 		borderWidth: 2,
 		marginBottom: 20,
+		opacity: 0.9,
 		padding: 10,
 		width: '80%',
 	},

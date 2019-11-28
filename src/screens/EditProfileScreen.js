@@ -27,7 +27,6 @@ const EditProfileScreen = props => {
 			setPhone(data.phone)
 			setEmail(data.email)
 			setAvatar(data.avatar)
-			console.log(data)
 		})
 	}
 
@@ -115,28 +114,28 @@ const style = {
 		fontWeight: 'bold',
 	},
 	wrapper: {
+		alignItems: 'center',
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center',
 		paddingTop: 40,
 	},
 	input: {
 		backgroundColor: '#FFF',
-		opacity: 0.9,
 		borderColor: '#FFF',
 		borderRadius: 5,
 		borderWidth: 1,
 		marginBottom: 20,
+		opacity: 0.9,
 		padding: 10,
 		width: '80%',
 	},
 	button: {
 		backgroundColor: '#222629',
-		padding: 10,
-		width: '80%',
-		justifyContent: 'center',
 		borderRadius: 4,
 		elevation: 0,
+		justifyContent: 'center',
+		padding: 10,
+		width: '80%',
 	},
 	buttonText: {
 		color: '#FFF',
